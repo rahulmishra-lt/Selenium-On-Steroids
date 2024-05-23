@@ -16,8 +16,8 @@ permissions:
   pages: write
 
 env:
-  BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
-  BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
+  LAMBDATEST_USERNAME: ${{ secrets.LAMBDATEST_USERNAME }}
+  LAMBDATEST_ACCESS_KEY: ${{ secrets.LAMBDATEST_ACCESS_KEY }}
 
 jobs:
   test:
@@ -44,6 +44,20 @@ jobs:
           distribution: "temurin"
           java-version: "17"
           cache: "maven"
+       
+      - name: Start Tunnel
+        uses: LambdaTest/LambdaTest-tunnel-action@v2
+        id: tunnel
+        with:
+          user: ${{ secrets.LT_USERNAME }}
+          accessKey: ${{ secrets.LT_ACCESS_KEY }}
+          tunnelName: "testTunnel"
+      - run: npm test
+      - name: Export Tunnel Logs for debugging
+        uses: actions/upload-artifact@v2
+        with:
+          name: tunnel_logs
+          path: ${{ steps.tunnel.outputs.logFileName }}
 
       - name: Maven Test
         continue-on-error: true
