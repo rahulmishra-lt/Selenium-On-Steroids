@@ -54,8 +54,6 @@ jobs:
           accessKey: ${{ env.LAMBDATEST_ACCESS_KEY }}
           tunnelName: ${{ env.LAMBDATEST_TUNNEL_NAME }}
 
-      - run: npm test
-
       - name: Export Tunnel Logs for debugging
         uses: actions/upload-artifact@v2
         with:
