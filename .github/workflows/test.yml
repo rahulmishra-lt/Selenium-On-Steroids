@@ -50,9 +50,9 @@ jobs:
         uses: LambdaTest/LambdaTest-tunnel-action@v2
         id: tunnel
         with:
-          user: $LAMBDATEST_USERNAME
-          accessKey: $LAMBDATEST_ACCESS_KEY
-          tunnelName: $LAMBDATEST_TUNNEL_NAME
+          user: ${{ env.LAMBDATEST_USERNAME }}
+          accessKey: ${{ env.LAMBDATEST_ACCESS_KEY }}
+          tunnelName: ${{ env.LAMBDATEST_TUNNEL_NAME }}
 
       - run: npm test
 
