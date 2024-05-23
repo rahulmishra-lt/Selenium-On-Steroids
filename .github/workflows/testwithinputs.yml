@@ -12,8 +12,8 @@ on:
         default: "selenoid"
         type: choice
 env:
-  BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
-  BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
+  LAMBDATEST_USERNAME: ${{ secrets.LAMBDATEST_USERNAME }}
+  LAMBDATEST_ACCESS_KEY: ${{ secrets.LAMBDATEST_ACCESS_KEY }}
 
 jobs:
   test:
@@ -49,7 +49,7 @@ jobs:
 
       - name: Maven Test
         if: github.event.inputs.runmode == 'browserstack'
-        run: mvn clean test -Dselenide.browser=org.heyrmi.providers.BrowserstackDriverProvider --no-transfer-progress
+        run: mvn clean test -Dselenide.browser=org.heyrmi.providers.LambdaTestDriverProvider --no-transfer-progress
 
       - name: Read value from Properties-file
         id: read_property

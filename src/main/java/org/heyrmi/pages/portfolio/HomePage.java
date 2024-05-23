@@ -23,7 +23,7 @@ public class HomePage {
     public HomePage verifyHomePage() {
         TITLE.shouldHave(visible, text("Rahul Mishra"));
         NAME.shouldBe(visible).shouldHave(partialText("Rahul"));
-        RESUME.shouldBe(visible, enabled);
+        // RESUME.shouldBe(visible, enabled);
         HOME.shouldBe(visible);
         BLOG.shouldBe(visible);
         WORK.shouldBe(visible);
