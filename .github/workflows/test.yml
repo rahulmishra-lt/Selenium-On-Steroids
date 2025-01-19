@@ -55,7 +55,7 @@ jobs:
           tunnelName: ${{ env.LAMBDATEST_TUNNEL_NAME }}
 
       - name: Export Tunnel Logs for debugging
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: tunnel_logs
           path: ${{ steps.tunnel.outputs.logFileName }}
